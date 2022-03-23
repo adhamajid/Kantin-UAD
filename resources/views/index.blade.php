@@ -4,6 +4,9 @@
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    <!-- My CSS -->
+    <link rel="stylesheet" href="{{ asset('css') }}/style.css" />
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
@@ -11,8 +14,6 @@
     <!-- Boostrap Icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" />
 
-    <!-- My CSS -->
-    <link rel="stylesheet" href="style.css" />
 
     <title>Kantin | Univ. Ahmad Dahlan</title>
   </head>
@@ -48,9 +49,9 @@
     <!-- Card -->
     <br /><br /><br /><br /><br />
 
-    <audio id="myAudio" controls autoplay>
-      <source src="music/WhatsApp Audio 2021-07-03 at 08.15.34.mpeg_music.ogg" type="audio/ogg" />
-      <source src="music/WhatsApp Audio 2021-07-03 at 08.15.34.mpeg_music.mp3" type="audio/mpeg" />
+    <audio id="myAudio" controls autoplay hidden>
+      <source src="{{ asset('music') }}/WhatsApp Audio 2021-07-03 at 08.15.34.mpeg_music.ogg" type="audio/ogg" />
+      <source src="{{ asset('music') }}/WhatsApp Audio 2021-07-03 at 08.15.34.mpeg_music.mp3" type="audio/mpeg" />
     </audio>
     <script>
       function myFunction() {
@@ -63,7 +64,7 @@
 
     <!-- Jumbotron -->
     <section id="home" class="jumbotron text-center">
-      <img src="img/me.png" alt="อัดฮา & สุรดา" width="200" class="rounded-circle img-thumbnail" />
+      <img src="{{ asset('img') }}/me.png" alt="อัดฮา & สุรดา" width="200" class="rounded-circle img-thumbnail" />
       <h1 class="display-4">Kantin UAD</h1>
       <p class="lead">Menyediakan makanan lezat & bergizi</p>
 
@@ -112,38 +113,24 @@
             <h2>Menu makanan</h2>
           </div>
         </div>
+        
         <div class="row">
+
+          {{-- Ambil data makanan dari database --}}
+          @foreach ($makanan as $makanan)
           <div class="col-md-4 mb-3">
             <div class="card">
-              <img src="img/4.jpg" class="card-img-top" alt="Project 1" />
+              <img src="{{ $makanan->foto }}/4.jpg" class="card-img-top" alt="Project 1" />
               <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <h5 class="card-title">{{ $makanan->nama }}</h5>
+                <p class="card-text">{{ $makanan->detail }}</p>
                 <a href="#" class="btn btn-primary">Go somewhere</a>
               </div>
             </div>
           </div>
-          <div class="col-md-4 mb-3">
-            <div class="card">
-              <img src="img/4.jpg" class="card-img-top" alt="Project 1" />
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 mb-3">
-            <div class="card">
-              <img src="img/4.jpg" class="card-img-top" alt="Project 1" />
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
-          </div>
-        </div>
+          @endforeach
+          {{-- Selesai --}}
+
       </div>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#f5d752" fill-opacity="1" d="M0,192L1440,192L1440,320L0,320Z"></path></svg>
     </div>
